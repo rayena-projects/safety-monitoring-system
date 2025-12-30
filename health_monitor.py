@@ -175,7 +175,7 @@ class HealthMonitor:
         UI.status_box("MONITORING SETTINGS", info_items)
 
         print(f"{Colors.CYAN}📱 To end monitoring:{Colors.RESET}")
-        print(f"   • Type {Colors.BOLD}REMOVE{Colors.RESET} (+ PIN if enabled) when prompted")
+       print(f"   • Type {Colors.BOLD}REMOVE{Colors.RESET} or {Colors.BOLD}REMOVED{Colors.RESET} (+ PIN if enabled) after any cycle")
         print(f"   • Or press {Colors.BOLD}CTRL+C{Colors.RESET} anytime")
         print(f"\n{Colors.GREEN}System will perform a final safety check before ending.{Colors.RESET}\n")
 
@@ -321,12 +321,14 @@ class HealthMonitor:
 
             cycle_count += 1
 
-            # Delay between cycles (10 seconds) with ability to skip or remove
-            print(f"\nNext cycle in {self.CYCLE_DELAY} seconds...")
+            # Always check if user wants to remove the watch after each cycle
+            print(f"\n{Colors.CYAN}To continue to next cycle or end monitoring:{Colors.RESET}")
             if self.safety_pin:
-                print("(Press Enter to continue immediately)")
+                print(f"  • Press Enter to continue to next cycle in {self.CYCLE_DELAY} seconds")
+                print(f"  • Type 'REMOVE {self.safety_pin}' to end monitoring now")
             else:
-                print("(Press Enter to continue, or type REMOVE to end)")
+                print(f"  • Press Enter to continue to next cycle in {self.CYCLE_DELAY} seconds")
+                print(f"  • Type 'REMOVE' to end monitoring now")
 
             # Non-blocking wait with timeout
             signal.signal(signal.SIGALRM, timeout_handler)
@@ -341,7 +343,7 @@ class HealthMonitor:
                     parts = user_input.split()
                     command = parts[0].upper()
 
-                    if command == "REMOVE":
+                    if command == "REMOVE" or command == "REMOVED":
                         # Check PIN if required
                         if self.safety_pin:
                             if len(parts) < 2 or parts[1] != self.safety_pin:
@@ -361,7 +363,6 @@ class HealthMonitor:
             except Exception:
                 signal.alarm(0)
                 pass
-
     def _calculate_abnormality(self, window: List[SensorReading]) -> float:
         """
         Calculate abnormality score from a sliding window of sensor readings.
