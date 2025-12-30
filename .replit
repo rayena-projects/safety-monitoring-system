@@ -1,0 +1,21 @@
+# Replit configuration for Personal Safety Monitoring System
+# This file tells Replit how to run the application
+
+# Set the language/runtime
+language = "python3"
+
+# Command to run when "Run" button is pressed
+run = "python3 main.py"
+
+# Optional: Command to run when starting the REPL
+# entrypoint = "main.py"
+
+# Audio is not required for this project
+audio = false
+
+[nix]
+channel = "stable-23_11"
+
+[deployment]
+run = ["python3", "main.py"]
+deploymentTarget = "cloudrun"
