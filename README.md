@@ -162,7 +162,7 @@ The architecture document includes:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/safety-monitoring-system.git
+   git clone https://github.com/rayena-projects/safety-monitoring-system.git
    cd safety-monitoring-system
    ```
 
@@ -397,7 +397,7 @@ This project is licensed under the MIT License - see below for details.
 ```
 MIT License
 
-Copyright (c) 2025 [Your Name]
+Copyright (c) 2025 [Rayena Jhunjhunwala]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -458,6 +458,6 @@ In a real deployment, you must:
 
 **Built with ❤️ for safer social experiences**
 
-[Report Bug](https://github.com/yourusername/safety-monitoring-system/issues) • [Request Feature](https://github.com/yourusername/safety-monitoring-system/issues)
+[Report Bug](https://github.com/rayena-projects/safety-monitoring-system/issues) • [Request Feature](https://github.com/rayena-projects/safety-monitoring-system/issues)
 
 </div>
