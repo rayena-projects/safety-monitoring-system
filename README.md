@@ -52,25 +52,19 @@ Detecting drink spiking through physiological changes—specifically monitoring 
 > **Note**: Demo materials will be added here
 
 ### Live Interactive Demo
-Try the system yourself: **[Run on Replit →](https://replit.com/@yourusername/safety-monitoring-system)**
+Try the system yourself: **[Run on Replit →](https://replit.com/@rayenajjwala/safety-monitoring-system?v=1)**
 
 *👆 Click to run the full monitoring system in your browser (no installation required!)*
-
-📖 **[Replit Setup Guide →](REPLIT_SETUP.md)** - Deploy your own copy in 5 minutes
 
 ### Video Walkthrough
 Watch a 2-minute demonstration of the system in action:
 
 **[▶️ View Demo Video on YouTube](https://youtube.com/watch?v=your-video-id)**
 
-*👆 Replace with your video link after recording*
-
-📖 **[Demo Video Creation Guide →](DEMO_VIDEO_GUIDE.md)** - Complete script, recording tips, and editing workflow
 
 ### Visual Preview
 ![System Demo](demo.gif)
 
-*Coming soon: Animated GIF showing the monitoring interface*
 
 ---
 
