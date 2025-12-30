@@ -20,3 +20,6 @@ channel = "stable-25_05"
 [deployment]
 run = ["python3", "main.py"]
 deploymentTarget = "cloudrun"
+
+[agent]
+expertMode = true
