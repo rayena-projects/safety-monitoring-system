@@ -47,10 +47,6 @@ Detecting drink spiking through physiological changes—specifically monitoring 
 
 ---
 
-## 📺 Demo
-
-> **Note**: Demo materials will be added here
-
 ### Live Interactive Demo
 
 **🎮 Try it yourself on Replit!**
@@ -60,17 +56,6 @@ Detecting drink spiking through physiological changes—specifically monitoring 
 2. Click the **"Fork Repl"** button to create your own copy
 3. Click the green **"Run"** button at the top
 4. The monitoring system will start - follow the prompts!
-
-### Video Walkthrough
-Watch a 2-minute demonstration of the system in action:
-
-**[▶️ View Demo Video on YouTube](https://youtube.com/watch?v=your-video-id)**
-
-
-### Visual Preview
-![System Demo](demo.gif)
-
-
 ---
 
 ## ✨ Features
