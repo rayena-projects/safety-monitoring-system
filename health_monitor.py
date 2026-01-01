@@ -175,7 +175,7 @@ class HealthMonitor:
         UI.status_box("MONITORING SETTINGS", info_items)
 
         print(f"{Colors.CYAN}📱 To end monitoring:{Colors.RESET}")
-       print(f"   • Type {Colors.BOLD}REMOVE{Colors.RESET} or {Colors.BOLD}REMOVED{Colors.RESET} (+ PIN if enabled) after any cycle")
+        print(f"   • Type {Colors.BOLD}REMOVE{Colors.RESET} or {Colors.BOLD}REMOVED{Colors.RESET} (+ PIN if enabled) after any cycle")
         print(f"   • Or press {Colors.BOLD}CTRL+C{Colors.RESET} anytime")
         print(f"\n{Colors.GREEN}System will perform a final safety check before ending.{Colors.RESET}\n")
 
@@ -363,6 +363,7 @@ class HealthMonitor:
             except Exception:
                 signal.alarm(0)
                 pass
+
     def _calculate_abnormality(self, window: List[SensorReading]) -> float:
         """
         Calculate abnormality score from a sliding window of sensor readings.
@@ -488,7 +489,7 @@ class HealthMonitor:
                     return False
 
             # Check for REMOVE command
-            if command == "REMOVE":
+            if command == "REMOVE" or command == "REMOVED":
                 print("\n🔴 Watch removal detected...")
                 self._final_safety_check()
                 raise SystemExit()  # Exit the program
@@ -509,18 +510,35 @@ class HealthMonitor:
         print("\n" + "="*60)
         print("FINAL SAFETY CHECK BEFORE ENDING SESSION")
         print("="*60)
-        print(f"Are you safe? Type YES within {self.RESPONSE_TIMEOUT} seconds:")
+
+        if self.safety_pin:
+            print(f"Are you safe? Type 'YES {self.safety_pin}' within {self.RESPONSE_TIMEOUT} seconds:")
+        else:
+            print(f"Are you safe? Type 'YES' within {self.RESPONSE_TIMEOUT} seconds:")
 
         # Set up signal handler for timeout
         signal.signal(signal.SIGALRM, timeout_handler)
         signal.alarm(self.RESPONSE_TIMEOUT)
 
         try:
-            response = input()
+            response = input().strip()
             signal.alarm(0)  # Cancel the alarm
-            if response.strip().upper() == "YES":
-                print("\n✓ User confirmed safety.")
-                print("Monitoring session ended. Stay safe!")
+
+            # Parse response for YES command with optional PIN
+            parts = response.split()
+            if parts and parts[0].upper() == "YES":
+                # Check PIN if required
+                if self.safety_pin:
+                    if len(parts) >= 2 and parts[1] == self.safety_pin:
+                        print("\n✓ User confirmed safety.")
+                        print("Monitoring session ended. Stay safe!")
+                    else:
+                        print("\n⚠️  Incorrect or missing PIN - treating as unsafe!")
+                        self.alert_system.send_alert()
+                        print("Monitoring session ended.")
+                else:
+                    print("\n✓ User confirmed safety.")
+                    print("Monitoring session ended. Stay safe!")
             else:
                 print("\n⚠️  Unsafe response - sending alert to emergency contacts!")
                 self.alert_system.send_alert()
